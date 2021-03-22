@@ -6,12 +6,18 @@
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
    <bean id = "mainspring" class = "ernadas_kreive.KreivesIlgis" scope = "singleton">
-		<constructor-arg index="0" ref="kreive_is_failo_xxyy" />   
+		<constructor-arg index="0" ref="kreive_is_failo_xy" />   
    </bean>  
    <bean id = "kreive_is_failo_xyxy" class = "plokstuma.KreiveIsFailoXYXY" scope = "singleton">
 		<constructor-arg index="0" value="kreives_taskai2.csv" />   
    </bean> 
    <bean id = "kreive_is_failo_xxyy" class = "plokstuma.KreiveIsFailoXXYY" scope = "singleton">
 		<constructor-arg index="0" value="kreives_taskai.csv" />     
-   </bean>         
+   </bean>
+    <bean id = "kreive_is_failo_xyz" class = "plokstuma.KreiveIsFailoXYZ" scope = "singleton">
+		<constructor-arg index="0" value="kreives_taskai3.csv" />     
+   </bean>
+    <bean id = "kreive_is_failo_xy" class = "plokstuma.KreiveIsFailoXY" scope = "singleton">
+		<constructor-arg index="0" value="kreives_taskai3.csv" />     
+   </bean>   
 </beans>

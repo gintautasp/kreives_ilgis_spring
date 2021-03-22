@@ -3,6 +3,20 @@ package plokstuma;
 public class Kreive3D extends Kreive {
 	
 	
+	public Kreive3D() {
+		
+	}
+
+	/**
+	* konstruktorius, sukuria tuščia, taškų masyva, pagal nurodytą elementų skaičių
+	*@param int max_tasku
+	*/
+	public Kreive3D ( int max_tasku ) {
+		
+		taskai = new Taskas [ max_tasku ];
+		kiek_tasku = 0;
+	}	
+	
 	/**
 	* suskaičiuoja kreivės ilgį
 	*@return double
@@ -34,9 +48,9 @@ public class Kreive3D extends Kreive {
 		
 		String lentele = 
 		
-			    "-------------------------------\n" 
-			+ "|      x       |       y      |\n"
-			+ "-------------------------------\n";
+			    "----------------------------------------------\n" 
+			+ "|      x       |       y      |       z      |\n"
+			+ "----------------------------------------------\n";
 		
 		int i = 0;
 		
@@ -48,7 +62,7 @@ public class Kreive3D extends Kreive {
 			 		+ "    |\n"; 
 			i++;
 		}
-		lentele +=  "-------------------------------\n";
+		lentele +=  "----------------------------------------------\n";
 		
 		return lentele;
 	}	
