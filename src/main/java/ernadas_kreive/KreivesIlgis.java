@@ -7,9 +7,16 @@ import plokstuma.*;
 
 public class KreivesIlgis {
 	
+	KreiveIsFailo kreive_is_failo;
+	
 	public KreivesIlgis() {
 		
 		
+	}
+	
+	public KreivesIlgis (KreiveIsFailo kreive_is_failo ) {
+		
+		this.kreive_is_failo = kreive_is_failo;
 	}
 	
 	public void sakomLabasSpring() {
@@ -23,12 +30,12 @@ public class KreivesIlgis {
 		System.out.println( "Skaiciuosim kreives ilgi:" );
 																							//   organizuojamas konsolės dialogas, ..
 																							// .. kuriuo įvedamas failo vardas, ..
-		KonsolesDialogas konsoles_dialogas = new KonsolesDialogas();									// .. arba nustatomas vardas  kreives_taskai.csv, ..
+		// KonsolesDialogas konsoles_dialogas = new KonsolesDialogas();									// .. arba nustatomas vardas  kreives_taskai.csv, ..
 																						// .. pagal nutylejima ir perduodamas priminimo,
-		String vardas_failo = konsoles_dialogas.ivestiReiksme (" kreives tasku failas", "kreives_taskai.csv" );	      			//  .. ką įvesti - " kreivės taškų failas "
+		// String vardas_failo = konsoles_dialogas.ivestiReiksme (" kreives tasku failas", "kreives_taskai2.csv" );	      			//  .. ką įvesti - " kreivės taškų failas "
 																						
-		KreiveIsFailoXXYY kreive_is_failo_xx_yy = new KreiveIsFailoXXYY ( vardas_failo ); 						// kuriams kreivės skaitymo iš failo objektas ..
-		Kreive kreive = kreive_is_failo_xx_yy.gautiKreive();											// .. ir pasiimamas Kreives objektas, kuriame yra ..
+																								// kuriams kreivės skaitymo iš failo objektas ..
+		Kreive kreive = kreive_is_failo.gautiKreive();											// .. ir pasiimamas Kreives objektas, kuriame yra ..
 																											//  .. Taskai masyvas
 
 		System.out.println ( kreive.toString() );																	// parodomi kreivės taškai

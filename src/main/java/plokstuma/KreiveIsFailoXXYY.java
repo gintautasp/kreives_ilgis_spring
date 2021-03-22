@@ -6,9 +6,7 @@
 
 	import java.io.FileReader;	
 	
-	public class KreiveIsFailoXXYY {
-		
-		public String vardas_failo;
+	public class KreiveIsFailoXXYY  extends KreiveIsFailo {
 	
 		public KreiveIsFailoXXYY ( String failo_vardas ) {
 			
