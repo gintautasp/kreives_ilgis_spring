@@ -8,8 +8,8 @@
 	*/
 	public class Kreive {
 	
-		public Taskas[] taskai;  														// kreivės taškų masyvas
-		public int kiek_tasku;														// kreivės taškų kiekis
+		protected Taskas[] taskai;  														// kreivės taškų masyvas
+		protected int kiek_tasku;														// kreivės taškų kiekis
 		
 		/**
 		* konstruktorius, be parametrų
@@ -80,5 +80,23 @@
 			lentele +=  "-------------------------------\n";
 			
 			return lentele;
+		}
+
+		public Taskas[] getTaskai() {
+			return taskai;
+		}
+
+		public void setTaskai(Taskas[] taskai) {
+			this.taskai = taskai;
+		}
+
+		public int getKiek_tasku() {
+			
+			return kiek_tasku;
+		}
+
+		public void setKiek_tasku(int kiek_tasku) {
+			
+			this.kiek_tasku = kiek_tasku;
 		}
 	}

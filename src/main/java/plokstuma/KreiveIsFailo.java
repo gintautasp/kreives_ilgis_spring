@@ -2,7 +2,7 @@ package plokstuma;
 
 public class KreiveIsFailo {
 	
-	public String vardas_failo;	
+	protected String vardas_failo;	
 	
 	public KreiveIsFailo( ) {
 		

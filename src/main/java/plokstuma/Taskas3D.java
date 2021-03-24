@@ -2,7 +2,7 @@ package plokstuma;
 
 public class Taskas3D extends Taskas {
 
-	public double z;
+	protected double z;
 	
 	public Taskas3D() {	
 	}
@@ -12,4 +12,13 @@ public class Taskas3D extends Taskas {
 		super ( x_koord, y_koord );
 		z = z_koord;
 	}
+
+	public double getZ() {
+		return z;
+	}
+
+	public void setZ(double z) {
+		this.z = z;
+	}
+	
 }

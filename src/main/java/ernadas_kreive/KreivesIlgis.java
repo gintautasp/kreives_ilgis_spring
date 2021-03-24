@@ -7,7 +7,7 @@ import plokstuma.*;
 
 public class KreivesIlgis {
 	
-	KreiveIsFailo kreive_is_failo;
+	private KreiveIsFailo kreive_is_failo;
 	
 	public KreivesIlgis() {
 		
@@ -38,7 +38,16 @@ public class KreivesIlgis {
 		Kreive kreive = kreive_is_failo.gautiKreive();											// .. ir pasiimamas Kreives objektas, kuriame yra ..
 																											//  .. Taskai masyvas
 
-		System.out.println ( kreive.toString() );																	// parodomi kreivės taškai
+		// System.out.println ( kreive.toString() );																	// parodomi kreivės taškai
+		int i = 0;
+		
+		while ( i < kreive.getKiek_tasku() ) {
+			 
+			System.out.println ( kreive.getTaskai()[ i ].getX() + " " +  kreive.getTaskai()[ i ].getY() +  " "  + ( ( (Taskas3D ) kreive.getTaskai()[ i ]).getZ() )  );
+			
+			i++;
+		}
+		
 		System.out.println ( "Kreives ilgis: " + kreive.ilgis() );												// ir parašomas suskaičiuotas kreivės ilgis		
 	}
 
