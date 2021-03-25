@@ -30,10 +30,11 @@ public class KreivesIlgis {
 		System.out.println( "Skaiciuosim kreives ilgi:" );
 																							//   organizuojamas konsolės dialogas, ..
 																							// .. kuriuo įvedamas failo vardas, ..
-		// KonsolesDialogas konsoles_dialogas = new KonsolesDialogas();									// .. arba nustatomas vardas  kreives_taskai.csv, ..
+		KonsolesDialogas konsoles_dialogas = new KonsolesDialogas();									// .. arba nustatomas vardas  kreives_taskai.csv, ..
 																						// .. pagal nutylejima ir perduodamas priminimo,
-		// String vardas_failo = konsoles_dialogas.ivestiReiksme (" kreives tasku failas", "kreives_taskai2.csv" );	      			//  .. ką įvesti - " kreivės taškų failas "
-																						
+			      			//  .. ką įvesti - " kreivės taškų failas "
+
+		kreive_is_failo.setVardasFailo( konsoles_dialogas.ivestiReiksme (" kreives tasku failas", kreive_is_failo.getVardasFailo() ) );
 																								// kuriams kreivės skaitymo iš failo objektas ..
 		Kreive kreive = kreive_is_failo.gautiKreive();											// .. ir pasiimamas Kreives objektas, kuriame yra ..
 																											//  .. Taskai masyvas
