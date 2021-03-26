@@ -2,10 +2,30 @@
 <html>
 <head>
 	<title>Labas Spring web</title>
+	<style>
+		#forma {
+			 width: 90%;
+			 margin: 10px auto;
+		}
+		label {
+			display: block;
+		}
+		input, label {
+			width: 90%;
+			margin: 10px auto;
+		}
+		.skaicius {
+		
+			color: green;
+		}
+		.klaida {
+		
+			color: red;
+		}
+	</style>
 </head>
 <body>
 	Labas Spring web
-	
 	<table>
 		<tr>
 			<th>
@@ -26,6 +46,24 @@
 	</table>
 	<div>
 	Kreivės ilgis: <span class="skaicius" th:text="${kreive.ilgis()}"></span>
-	</div>	
+	
+	Taško koordinatės:<br>
+	x: <span class="skaicius" th:text="${taskas.getX()}"></span>
+	y: <span class="skaicius" th:text="${taskas.getY()}"></span>
+	z: <span class="skaicius" th:text="${taskas.getZ()}"></span>			
+	</div>
+	<div id="forma">
+		<h3>Taško įvedimas</h3>
+		<span class="klaida" th:text="${err_msg}"></span>
+		<form method="POST" action="">
+			<label for="x">x</label>
+			<input name="x" type="text">
+			<label for="y">y</label>
+			<input name="y" type="text">	
+			<label for="z">z</label>
+			<input name="z" type="text">
+			<input type="submit" name="rasti_atstuma" class="frm_button" value="skaiciuoti">
+		</form>
+	</div>		
 </body>
 </html>
