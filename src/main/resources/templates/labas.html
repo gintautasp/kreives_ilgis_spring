@@ -5,5 +5,27 @@
 </head>
 <body>
 	Labas Spring web
+	
+	<table>
+		<tr>
+			<th>
+				x
+			</th>
+			<th>
+				y
+			</th>			
+			<th>
+				z
+			</th>
+		</tr>
+		<tr th:each="taskas : ${kreive.getTaskai()}">
+			<td th:text="${taskas.getX()}"></td>
+			<td th:text="${taskas.getY()}"></td>
+			<td th:text="${taskas.getZ()}"></td>			
+		</tr>
+	</table>
+	<div>
+	Kreivės ilgis: <span class="skaicius" th:text="${kreive.ilgis()}"></span>
+	</div>	
 </body>
 </html>
