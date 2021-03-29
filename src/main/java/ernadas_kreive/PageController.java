@@ -1,5 +1,7 @@
 package ernadas_kreive;
 
+import java.io.IOException;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -7,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import plokstuma.Taskas;
 import plokstuma.Taskas3D;
 
 @Controller
@@ -61,5 +65,23 @@ public class PageController {
 	
 		return "labas";
 	}
+	
+	@RequestMapping(path="/kreives-taskai")	
+	public @ResponseBody Taskas[] kreivesTaskai() throws IOException {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext( "file:src/beans.xml" );
+		KreivesIlgis ki = (KreivesIlgis) context.getBean( "mainspring" );
+		
+		ki.skaiciuojamKreivesIlgiWeb();		
+		
+		return ki.getKreive().getTaskai();
+	}
+	
+	@RequestMapping(path="/labas-ajax")	
+	public @ResponseBody String labasAjax() {
+		
+		
+		return "Labas Ajax";
+	}	
 
 }
