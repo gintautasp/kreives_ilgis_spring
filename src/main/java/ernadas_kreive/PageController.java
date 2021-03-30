@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import plokstuma.Kreive;
 import plokstuma.Taskas;
 import plokstuma.Taskas3D;
 
@@ -67,14 +68,14 @@ public class PageController {
 	}
 	
 	@RequestMapping(path="/kreives-taskai")	
-	public @ResponseBody Taskas[] kreivesTaskai() throws IOException {
+	public @ResponseBody Kreive kreivesTaskai() throws IOException {
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext( "file:src/beans.xml" );
 		KreivesIlgis ki = (KreivesIlgis) context.getBean( "mainspring" );
 		
 		ki.skaiciuojamKreivesIlgiWeb();		
 		
-		return ki.getKreive().getTaskai();
+		return ki.getKreive();
 	}
 	
 	@RequestMapping(path="/labas-ajax")	

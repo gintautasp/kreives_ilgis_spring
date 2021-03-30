@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Grafikas</title>
+	<style>
+	
+		body {
+		
+			background-image: url(Website/grafikelis3.jpg);
+			background-repeat: no-repeat;
+			background-size:cover;
+			background-attachment:fixed;
+			background-position:center;
+			}
+		
+		label, input, select  {
+		
+			width: 93%;
+			margin: 7px 11px;
+			padding: 4px 7px;
+		}
+		
+		input[type=button] {
+		
+			width: 50%;
+			float: center;
+			margin-center: 50px;
+		}
+		
+		#rezultatas {
+			
+			width: 48%;
+			border: 1px solid black;
+			margin-top: 10px;
+			margin-left: 20px;
+			padding: 10px;
+			float: center;
+		}
+		
+		#duomenys {
+		
+			width: 40%;
+			float: center;
+			margin-center: 20px;
+		}
+	</style>
+	<script>
+		function Grafikas ( id_canvas, reiksmes, arg_prad_re, arg_gal_re ) {
+		
+			cnv = document.getElementById ( id_canvas  );
+			ctx = cnv.getContext ( '2d' );	
+			ctx.strokeStyle = "purple";
+			
+			x_width = ( cnv.width - 50 );
+			y_height = ( cnv.height - 50 );
+			
+			x_koord_prad = 30;
+			y_koord_prad = y_height + 20;
+			
+			ctx.beginPath();
+			ctx.moveTo ( x_koord_prad, 40 );
+			ctx.lineTo ( x_koord_prad, y_koord_prad + 5 );
+			ctx.stroke();
+			ctx.strokeStyle = "black";
+			ctx.closePath();
+			
+			ctx.beginPath();
+			ctx.moveTo ( 25, y_koord_prad );
+			ctx.lineTo ( 30 + x_width, y_koord_prad );
+			ctx.stroke();
+			ctx.strokeStyle = "black";
+			ctx.closePath();
+			
+			ctx.beginPath();
+			ctx.strokeStyle = "green";
+			ctx.stroke();
+					
+			min = Math.min ( ... reiksmes );
+			max = Math.max ( ...reiksmes );
+			
+			y_range = max - min;
+			
+			x_range = arg_gal_re - arg_prad_re;
+			//(x_range / 5) * i + arg_prad_re; 
+			
+			x_koef_dx = x_width / ( reiksmes.length - 1 );
+
+
+			ctx.beginPath();
+			
+			y_grid_dy = y_height / 4;
+			x_grid_dx = x_width / 4;
+			
+																																									// Vertikalios
+			for ( i = 0; i < 5; i++ ) {
+			 
+				ctx.moveTo ( x_koord_prad + x_grid_dx * i, x_koord_prad - 10 );
+				ctx.lineTo ( x_koord_prad + x_grid_dx * i, y_koord_prad );
+			 
+				ctx.fillText((x_range / 5) * i + arg_prad_re, x_koord_prad + x_grid_dx * i, x_koord_prad - 10, x_koord_prad + x_grid_dx * i, y_koord_prad);
+
+				/*ctx.fillText("0", 20, 500);
+				
+				ctx.fillText("10", 240, 500);
+				      
+				ctx.fillText("20", 450, 500);
+				      
+				ctx.fillText("30", 660, 500);
+				    
+				ctx.fillText("40", 870, 500);*/
+			}
+																																									//Horizontalios
+			for ( i = 0; i < 5; i++ ) {
+			
+				ctx.moveTo ( x_koord_prad, y_koord_prad - y_grid_dy * i );
+				ctx.lineTo ( x_koord_prad + x_width, y_koord_prad - y_grid_dy * i );
+			
+				ctx.fillText((y_height / 5) * i - 10 , x_koord_prad, y_koord_prad - y_grid_dy * i, x_koord_prad + x_width, y_koord_prad - y_grid_dy * i);
+			
+				/*ctx.fillText("40", 10, 23);
+				
+				ctx.fillText("30", 10, 135);
+				     
+				ctx.fillText("20", 10, 247);
+				  
+				ctx.fillText("10", 10, 360);*/
+			}
+			
+			ctx.stroke();
+			ctx.closePath();			
+			
+			
+			ctx.beginPath();
+			ctx.moveTo ( x_koord_prad, y_koord_prad );
+
+			x_koord = x_koord_prad;
+		
+			for ( i = 0; i < reiksmes.length; i++ ) {
+			
+				ctx.lineTo ( x_koord, y_koord_prad - ( ( reiksmes [ i ] - min ) / y_range ) * y_height );
+				xy = '' + x_koord + ', ' + ( y_koord_prad - ( ( reiksmes [ i ] - min ) / y_range ) * y_height )
+				
+				x_koord = x_koord + x_koef_dx;
+			}
+			ctx.stroke();
+			ctx.closePath();
+		}
+		
+		function ReiksmiuLentele ( reiksmes, arg_prad_re, arg_gal_re, arg_pav, rez_pav ) {
+		
+			x = arg_prad_re;
+			
+			dx = ( arg_gal_re - arg_prad_re ) / ( reiksmes.length - 1 );
+			
+			reiksmiu_lent = '<table><tr><th>' + arg_pav + '</th><th>' + rez_pav + '</th></tr>';
+			
+			for ( i = 0; i < reiksmes.length; i++ ) {
+			
+				reiksmiu_lent += '<tr><td>' + x + '</td><td>' + reiksmes [ i ] + '</td></tr>'
+				
+				x = x + dx;
+			}
+			
+			reiksmiu_lent + '</tabe>'
+		
+			return reiksmiu_lent;
+		}
+		
+		function Skaiciuoti() {
+			
+			rez_eil = '';
+			
+			skaiciai = document.getElementById ( 'skaic' ).value.split ( ',' );
+			skaiciai_x = [];
+			
+			i = 0;
+			
+			kiekis  = 0;
+			suma = 0;
+			
+			max = skaiciai [ 0 ];
+			min = skaiciai [ 0 ]; 
+	
+			while ( i < skaiciai.length ) {
+			
+				skaicius = parseFloat ( skaiciai [ i ] );
+				
+				skaiciai_x.push ( skaicius );
+		
+				if ( max < skaicius ) {
+				
+					max = skaicius;
+				}
+
+				if ( min > skaicius ) {
+				
+					min = skaicius;
+				}
+				
+				suma = suma + skaicius;
+				i = i + 1;
+				kiekis++;
+			}
+			
+			rez_eil += 'įvesti skaičiai: ' + skaiciai.join( ' ' ) + '<br>kiekis: ' + kiekis + '<br>suma: ' + suma + '<br> min:' + min + '(' + Math.min ( ... skaiciai_x ) +  ' ) <br>max: ' + max;
+			
+			rez_eil += ReiksmiuLentele ( skaiciai, 1, skaiciai.length, 'nr.', 'reikšmė' );
+		
+			rezultato_laukas = document.getElementById ( 'rezultatas' );
+			
+			rezultato_laukas.innerHTML = rez_eil;
+			
+			Grafikas ( 'grafikas', skaiciai_x, 1, skaiciai_x.length ); 
+		}
+	</script>
+</head>
+<body>
+	<center><h1 style="color:#3399ff;font-size:50px;font-family:Lucida Console">Grafikas</h1>
+	<canvas id="grafikas" width="900" height="500">
+		
+	</canvas>		
+	<div id="duomenys">
+	<form method="POST" action="">
+		<label for="prad_atlyginimas">Įveskite skaičius</label>
+		<input type="text" id="skaic" value="5,10,100,100,20,35,200,200,30,45,300,300,40,55,350,350,0">
+		<input type="button" value="Skaičiuoti" onClick="Skaiciuoti()">
+	</form>
+	</div>
+
+	<div id="rezultatas">
+	</div>
+</body>
+</html>

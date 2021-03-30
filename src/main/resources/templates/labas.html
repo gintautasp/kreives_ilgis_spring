@@ -3,6 +3,7 @@
 <head>
 	<title>Labas Spring web</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script src="Grafikas.js"></script>
 	<script>
 	
 		$( document ).ready ( function() {
@@ -13,7 +14,7 @@
 			}).done( function( data ) {
 				
 				// alert ( "gauti duomenys: " + data );
-				
+				/*
 				for ( i = 0; i < data.length; i++ ) {
 				
 					if ( data [ i ] != null ) {
@@ -21,6 +22,11 @@
 						console.log ( "x: " + data [ i ].x  + " y: " + data [ i ].y + " z: " + data [ i ].z );
 					}
 				}
+				*/
+				
+				console.log ( JSON.stringify ( data ) );
+				
+				Grafikas ( 'kreives_grafikas', data.taskai, 'x', 'y' );
 		  	});	
 		});
 	
@@ -87,6 +93,8 @@
 			<input name="z" type="text">
 			<input type="submit" name="rasti_atstuma" class="frm_button" value="skaiciuoti">
 		</form>
-	</div>		
+	</div>	
+	<canvas id="kreives_grafikas"  width="900" height="500">
+	</canvas>	
 </body>
 </html>
