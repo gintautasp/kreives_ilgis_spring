@@ -19,14 +19,14 @@
 			this.ctx.moveTo ( this.x_koord_prad, 40 );
 			this.ctx.lineTo ( this.x_koord_prad, this.y_koord_prad + 5 );
 			this.ctx.stroke();
-			this.ctx.strokeStyle = "black";
+			this.ctx.strokeStyle =  "purple";
 			this.ctx.closePath();
 			
 			this.ctx.beginPath();
 			this.ctx.moveTo ( 25, this.y_koord_prad );
 			this.ctx.lineTo ( 30 + this.x_width, this.y_koord_prad );
 			this.ctx.stroke();
-			this.ctx.strokeStyle = "black";
+			this.ctx.strokeStyle =  "purple";
 			this.ctx.closePath();
 			
 			
@@ -90,13 +90,12 @@
 				console.log ( "y_grid_val: " + y_grid_val );
 			}
 			
-			this.braizom = function( reiksmes, x_koord_pav, y_koord_pav ) {
-			
-				this.ctx.stroke();
-				this.ctx.closePath();				
-
+			this.braizom = function( reiksmes, x_koord_pav, y_koord_pav, spalva ) {
+		
 				this.ctx.beginPath();
-				this.ctx.moveTo ( this.x_koord_prad, this.y_koord_prad );			
+				this.ctx.strokeStyle = spalva;				
+
+				go_to_start = true;
 				
 				for ( i = 0; i < reiksmes.length; i++ ) {
 					
@@ -106,7 +105,16 @@
 					
 					console.log ( "x: " + x_koord.toFixed( 2 ) + " y: " + y_koord.toFixed ( 2 )  + " : " + ( reiksmes [ i ] [ y_koord_pav ] ) + " : " +  ( reiksmes [ i ] [ y_koord_pav ] - this.min_y )   );
 				
-					this.ctx.lineTo ( x_koord,  y_koord );
+					
+					if ( go_to_start ) {
+					
+						this.ctx.moveTo ( x_koord, y_koord );
+						go_to_start = false;
+						
+					} else {
+					
+						this.ctx.lineTo ( x_koord,  y_koord );
+					}
 				}	
 				this.ctx.stroke();
 				this.ctx.closePath();	

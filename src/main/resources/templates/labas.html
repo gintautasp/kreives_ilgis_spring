@@ -7,6 +7,9 @@
 	<script>
 	
 		$( document ).ready ( function() {
+		
+		
+			var taskai_visi;
 	
 			$.ajax({
 		 		 url: '/kreives-taskai'
@@ -26,9 +29,33 @@
 				
 				console.log ( JSON.stringify ( data ) );
 				
-				grafikas = new GrafikasX ( 'kreives_grafikas', data.taskai, 'x', 'z' );
-				grafikas.braizom ( data.taskai, 'x', 'z' );
+				taskai_visi = data.taskai;
 		  	});	
+		  	
+		  	$( '#rasti_atstuma' ).click( function() {
+		  	
+		  		taskas = { x: 0, y: 0, z: 0 };
+		  		
+		  		taskas.x = $( '#inp_x' ).val();
+		  		taskas.y = $( '#inp_y' ).val();
+		  		taskas.z = $( '#inp_z' ).val();
+		  		
+		  		taskai_visi.push ( taskas );
+		  	
+				grafikas = new GrafikasX ( 'kreives_grafikas', taskai_visi, 'x', 'z' );
+				
+				taskai_visi.pop();
+				
+				grafikas.braizom ( taskai_visi, 'x', 'z', "blue" );
+				
+				atkarpa = [];
+				
+				atkarpa.push ( taskas );
+				atkarpa.push ( taskai_visi [ 0 ] );
+				
+				grafikas.braizom ( atkarpa, 'x', 'z', "red" );		  	
+		  	
+		  	});
 		});
 	
 	</script>
@@ -87,12 +114,12 @@
 		<span class="klaida" th:text="${err_msg}"></span>
 		<form method="POST" action="">
 			<label for="x">x</label>
-			<input name="x" type="text">
+			<input name="x" id="inp_x" type="text">
 			<label for="y">y</label>
-			<input name="y" type="text">	
+			<input name="y" id="inp_y" type="text">	
 			<label for="z">z</label>
-			<input name="z" type="text">
-			<input type="submit" name="rasti_atstuma" class="frm_button" value="skaiciuoti">
+			<input name="z" id="inp_z" type="text">
+			<input type="button" name="rasti_atstuma" id="rasti_atstuma" class="frm_button" value="skaiciuoti">
 		</form>
 	</div>	
 	<canvas id="kreives_grafikas"  width="900" height="500">
