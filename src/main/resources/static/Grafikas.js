@@ -59,22 +59,6 @@
 			y_range = max_y - min_y;	
 			console.log ( "min_y: " + min_y + " max_y: " + max_y  + " y_range: " + y_range );			
 			x_range = max_x - min_x;	
-
-			ctx.beginPath();
-			ctx.moveTo ( x_koord_prad, y_koord_prad );			
-			
-			for ( i = 0; i < reiksmes.length; i++ ) {
-				
-				x_koord = x_koord_prad + ( ( reiksmes [ i ] [ x_koord_pav ] - min_x ) / x_range ) * x_width;
-				
-				y_koord = y_koord_prad - ( ( reiksmes [ i ] [ y_koord_pav ] - min_y ) / y_range ) * ( y_height - 20 );
-				
-				console.log ( "x: " + x_koord.toFixed( 2 ) + " y: " + y_koord.toFixed ( 2 )  + " : " + ( reiksmes [ i ] [ y_koord_pav ] ) + " : " +  ( reiksmes [ i ] [ y_koord_pav ] - min_y )   );
-			
-				ctx.lineTo ( x_koord,  y_koord );
-			}	
-			ctx.stroke();
-			ctx.closePath();	
 			
 			y_grid_dy = ( y_height - 20 ) / 4;
 			
@@ -106,6 +90,22 @@
 				console.log ( "y_grid_val: " + y_grid_val );
 			}
 			
+			ctx.stroke();
+			ctx.closePath();				
+
+			ctx.beginPath();
+			ctx.moveTo ( x_koord_prad, y_koord_prad );			
+			
+			for ( i = 0; i < reiksmes.length; i++ ) {
+				
+				x_koord = x_koord_prad + ( ( reiksmes [ i ] [ x_koord_pav ] - min_x ) / x_range ) * x_width;
+				
+				y_koord = y_koord_prad - ( ( reiksmes [ i ] [ y_koord_pav ] - min_y ) / y_range ) * ( y_height - 20 );
+				
+				console.log ( "x: " + x_koord.toFixed( 2 ) + " y: " + y_koord.toFixed ( 2 )  + " : " + ( reiksmes [ i ] [ y_koord_pav ] ) + " : " +  ( reiksmes [ i ] [ y_koord_pav ] - min_y )   );
+			
+				ctx.lineTo ( x_koord,  y_koord );
+			}	
 			ctx.stroke();
 			ctx.closePath();	
 		}
